@@ -2411,11 +2411,8 @@ MonoBehaviour:
   mainMenuScreen: {fileID: 1357440019}
   createRoomScreen: {fileID: 943359570}
   joinRoomScreen: {fileID: 358149463}
-  inRoomScreen: {fileID: 925944844}
   createRoomNameInput: {fileID: 2113011563}
   joinRoomNameInput: {fileID: 329030777}
-  roomNameDisplayText: {fileID: 1583895177}
-  playerCountText: {fileID: 1068674629}
   statusText: {fileID: 160464591}
 --- !u!1 &1357440019
 GameObject:
@@ -2551,7 +2548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee7992573b11e347b335edb1f904013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Photon_Manager
-  uiManager: {fileID: 1342217877}
 --- !u!4 &1411739298
 Transform:
   m_ObjectHideFlags: 0

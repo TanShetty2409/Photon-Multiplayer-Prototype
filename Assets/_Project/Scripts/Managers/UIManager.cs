@@ -5,21 +5,23 @@ using Photon.Pun;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
     [Header("UI Screens")]
     [SerializeField] private GameObject mainMenuScreen;
     [SerializeField] private GameObject createRoomScreen;
     [SerializeField] private GameObject joinRoomScreen;
-    [SerializeField] private GameObject inRoomScreen;
 
     [Header("Room Inputs")]
     [SerializeField] private TMP_InputField createRoomNameInput;
     [SerializeField] private TMP_InputField joinRoomNameInput;
 
-    [SerializeField] private TMP_Text roomNameDisplayText;
-    [SerializeField] private TMP_Text playerCountText;
-
 
     [SerializeField] private TMP_Text statusText;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
@@ -32,7 +34,6 @@ public class UIManager : MonoBehaviour
         mainMenuScreen.SetActive(true);
         createRoomScreen.SetActive(false);
         joinRoomScreen.SetActive(false);
-        inRoomScreen.SetActive(false);
     }
 
     public void ShowCreateRoomScreen()
@@ -46,22 +47,6 @@ public class UIManager : MonoBehaviour
         joinRoomScreen.SetActive(true);
     }
 
-    public void ShowInRoomScreen(string roomName)
-    {
-        mainMenuScreen.SetActive(false);
-        createRoomScreen.SetActive(false);
-        joinRoomScreen.SetActive(false);
-        inRoomScreen.SetActive(true);
-        roomNameDisplayText.text = "Room: " + roomName;
-        UpdatePlayerCount();
-    }
-
-    public void UpdatePlayerCount()
-    {
-        if (Photon.Pun.PhotonNetwork.InRoom)
-            playerCountText.text = "Players: " + PhotonNetwork.CurrentRoom.PlayerCount + "/2";
-    }
-
     public void OnCreateRoomButtonPressed()
     {
         RoomManager.Instance.CreateRoom(createRoomNameInput.text);
@@ -69,10 +54,6 @@ public class UIManager : MonoBehaviour
     public void OnJoinRoomButtonPressed()
     {
         RoomManager.Instance.JoinRoom(joinRoomNameInput.text);
-    }
-    public void OnLeaveRoomButtonPressed()
-    {
-        RoomManager.Instance.LeaveRoom();
     }
 
     public void OnQuitButtonPressed()
